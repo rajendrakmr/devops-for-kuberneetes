@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd
+  labels:
+    app: httpd
+    region: av-b
+spec:
+  affinity: 
+    nodeAffinity:
+      # matching the node affinity rules, and required pod will not be scheduled on the node if the rules are not met
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: region
+            operator: In
+            values:
+            # - av-b
+            - av-c 
+  containers:
+  - name: httpd
+    image: httpd:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+    ports:
+      - containerPort: 80

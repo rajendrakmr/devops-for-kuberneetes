@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-anti-affinity
+spec:
+  replicas: 11
+  selector:
+    matchLabels:
+      app: pod-anti-affinity
+  template:
+    metadata:
+      labels:
+        app: pod-anti-affinity
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: region
+                    operator: In
+                    values:
+                    - av-bd
+                    - av-cs
+              topologyKey: "kubernetes.io/hostname" 
+          # preferredDuringSchedulingIgnoredDuringExecution:
+          #   - weight: 100
+          #     podAffinityTerm:
+          #       labelSelector:
+          #         matchLabels:
+          #           app: httpds
+          #       topologyKey: kubernetes.io/hostname
+      containers:
+      - name: pod-anti-affinity
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80

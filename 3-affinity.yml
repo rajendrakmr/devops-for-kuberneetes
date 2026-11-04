@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-affinity
+spec:
+  replicas: 11
+  selector:
+    matchLabels:
+      app: nginx-affinity
+  template:
+    metadata:
+      labels:
+        app: nginx-affinity
+    spec:
+      # nodeSelector:
+      #   disktype: ssd2
+      affinity:
+        nodeAffinity:
+          # matching the node affinity rules, and required pod will not be scheduled on the node if the rules are not met
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: disktype
+                operator: In
+                values:
+                - ssd
+
+          # matching the node affinity rules, but not required if not met, but preferred,pod will be scheduled on the node if the rules are met
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: region
+                    operator: In
+                    values:
+                    - av-b
+                    - av-c
+      containers:
+      - name: nginx-affinity
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80
