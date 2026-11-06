@@ -1,0 +1,41 @@
+# DEV: small budget
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 4Gi
+    limits.cpu: "5"
+    limits.memory: 8Gi
+    pods: "20"
+---
+# STG: medium budget
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: stg-quota
+  namespace: stg
+spec:
+  hard:
+    requests.cpu: "5"
+    requests.memory: 10Gi
+    limits.cpu: "10"
+    limits.memory: 20Gi
+    pods: "40"
+---
+# PRD: biggest budget, limits == requests (no overcommit)
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: prd-quota
+  namespace: prd
+spec:
+  hard:
+    requests.cpu: "12"
+    requests.memory: 24Gi
+    limits.cpu: "12"
+    limits.memory: 24Gi
+    pods: "100"
