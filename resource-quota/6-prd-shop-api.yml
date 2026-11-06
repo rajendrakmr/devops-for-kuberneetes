@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-api
+  namespace: prd
+spec:
+  replicas: 200
+  selector:
+    matchLabels: {app: shop-api}
+  template:
+    metadata:
+      labels: {app: shop-api}
+    spec:
+      containers:
+      - name: api
+        image: nginx:1.27
+        resources:
+          requests: {cpu: "1", memory: "1Gi"}
+          limits:   {cpu: "1", memory: "1Gi"}           # Guaranteed

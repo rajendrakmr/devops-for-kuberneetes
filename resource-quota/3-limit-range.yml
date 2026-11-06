@@ -1,0 +1,41 @@
+# DEV: small defaults, small max
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: dev-limits
+  namespace: dev
+spec:
+  limits:
+  - type: Container
+    defaultRequest: {cpu: "100m", memory: "128Mi"}
+    default:        {cpu: "500m", memory: "512Mi"}
+    max:            {cpu: "1",    memory: "1Gi"}
+---
+# STG: medium defaults
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: stg-limits
+  namespace: stg
+spec:
+  limits:
+  - type: Container
+    defaultRequest: {cpu: "250m", memory: "256Mi"}
+    default:        {cpu: "500m", memory: "512Mi"}
+    max:            {cpu: "2",    memory: "4Gi"}
+---
+# PRD: default request == default limit, so forgotten values become GUARANTEED
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: prd-limits
+  namespace: prd
+spec:
+  limits:
+  - type: Container
+    defaultRequest: {cpu: "500m", memory: "512Mi"}
+    default:        {cpu: "500m", memory: "512Mi"}
+    min:            {cpu: "100m", memory: "128Mi"}
+    max:            {cpu: "4",    memory: "8Gi"}
+    maxLimitRequestRatio:
+      memory: "1"        # memory limit must equal request
