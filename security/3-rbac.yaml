@@ -1,0 +1,35 @@
+ 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: shop
+data:
+  APP_ENV: "dev"
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: backend-role
+  namespace: shop
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["backend-config"]
+    verbs: ["get"]
+    
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: backend-rolebinding
+  namespace: shop
+subjects:
+  - kind: ServiceAccount
+    name: backend-sa
+    namespace: shop
+roleRef:
+  kind: Role
+  name: backend-role
+  apiGroup: rbac.authorization.k8s.io
