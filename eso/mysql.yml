@@ -4,7 +4,7 @@ metadata:
   name: mysql-svc
   namespace: default
 spec:
-  clusterIP: None            # headless, gives mysql-0 a stable DNS name
+  clusterIP: None           
   selector:
     app: mysql
   ports:

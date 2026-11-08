@@ -1,0 +1,39 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: myjob
+# spec:
+#   ttlSecondsAfterFinished: 100
+#   template:
+#     spec:
+#       containers:
+#       - name: pi
+#         image: perl
+#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+#       restartPolicy: Never
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-job
+  labels:
+    app: hello-job
+spec:
+  completions: 3              # need 3 successful pods in total
+  parallelism: 2              # run at most 2 at the same time
+  backoffLimit: 3             # retry failed pods up to 3 times
+  activeDeadlineSeconds: 120  # kill the whole Job if it runs longer than 2 min
+  ttlSecondsAfterFinished: 300  # auto-delete 5 min after it finishes
+  template:
+    metadata:
+      labels:
+        app: hello-job
+    spec:
+      restartPolicy: Never    # required: Never or OnFailure (not Always)
+      containers:
+      - name: task
+        image: busybox:1.36
+        command: ["sh", "-c"]
+        args:
+          - echo "Pod $HOSTNAME started at $(date)";
+            sleep 10;
+            echo "Pod $HOSTNAME done"
