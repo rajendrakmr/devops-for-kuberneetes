@@ -1,0 +1,37 @@
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: demo-route
+  namespace: todo-ns
+spec:
+  parentRefs:
+    - name: demo-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: frontend-svc
+          port: 8001 
+
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /nginx
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: nginx-svc
+          port: 8002

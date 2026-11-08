@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todoapp-configs
+  namespace: todo-ns
+data:
+    MYSQL_DATABASE: tododb
+    MYSQL_USER: todo
+    DB_HOST: mysql-svc.todo-ns.svc.cluster.local
+    DB_PORT: "3306"
+    DB_USER: todo 
+    DB_NAME: tododb
+    BACKEND_URL: http://backend-svc:8000
+
