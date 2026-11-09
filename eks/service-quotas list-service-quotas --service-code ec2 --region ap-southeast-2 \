@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+|                               ListServiceQuotas                              |
++---------------------------------------------------------------------+--------+
+|  [1m[34mDescribeFleetInstances request bucket refill rate[0m                  |  [1m[34m20.0[0m  |
+|  [1m[34mCreateCapacityReservationFleet request bucket refill rate[0m          |  [1m[34m5.0[0m   |
+|  [1m[34mCreateFleet request bucket refill rate[0m                             |  [1m[34m5.0[0m   |
+|  [1m[34mModifySpotFleetRequest request bucket maximum capacity[0m             |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeCapacityReservationFleets request bucket refill rate[0m       |  [1m[34m20.0[0m  |
+|  [1m[34mRequestSpotFleet request bucket maximum capacity[0m                   |  [1m[34m50.0[0m  |
+|  [1m[34mCreateFleet request bucket maximum capacity[0m                        |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeSpotFleetInstances request bucket maximum capacity[0m         |  [1m[34m100.0[0m |
+|  [1m[34mModifyFleet request bucket maximum capacity[0m                        |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeSpotFleetRequests request bucket maximum capacity[0m          |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeFleetHistory request bucket maximum capacity[0m               |  [1m[34m100.0[0m |
+|  [1m[34mDescribeSpotFleetRequests request bucket refill rate[0m               |  [1m[34m3.0[0m   |
+|  [1m[34mDeleteFleets request bucket maximum capacity[0m                       |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeFleetHistory request bucket refill rate[0m                    |  [1m[34m20.0[0m  |
+|  [1m[34mDeleteFleets request bucket refill rate[0m                            |  [1m[34m5.0[0m   |
+|  [1m[34mDescribeSpotFleetRequestHistory request bucket maximum capacity[0m    |  [1m[34m100.0[0m |
+|  [1m[34mCreateCapacityReservationFleet request bucket maximum capacity[0m     |  [1m[34m50.0[0m  |
+|  [1m[34mCancelCapacityReservationFleets request bucket refill rate[0m         |  [1m[34m5.0[0m   |
+|  [1m[34mDescribeFleets request bucket maximum capacity[0m                     |  [1m[34m100.0[0m |
+|  [1m[34mModifyCapacityReservationFleet request bucket refill rate[0m          |  [1m[34m5.0[0m   |
+|  [1m[34mModifySpotFleetRequest request bucket refill rate[0m                  |  [1m[34m5.0[0m   |
+|  [1m[34mDescribeFleetInstances request bucket maximum capacity[0m             |  [1m[34m100.0[0m |
+|  [1m[34mCancelSpotFleetRequests request bucket maximum capacity[0m            |  [1m[34m50.0[0m  |
+|  [1m[34mModifyCapacityReservationFleet request bucket maximum capacity[0m     |  [1m[34m50.0[0m  |
+|  [1m[34mCancelSpotFleetRequests request bucket refill rate[0m                 |  [1m[34m5.0[0m   |
+|  [1m[34mModifyFleet request bucket refill rate[0m                             |  [1m[34m5.0[0m   |
+|  [1m[34mRunning On-Demand Standard (A, C, D, H, I, M, R, T, Z) instances[0m   |  [1m[34m0.0[0m   |
+|  [1m[34mDescribeSpotFleetInstances request bucket refill rate[0m              |  [1m[34m5.0[0m   |
+|  [1m[34mRequestSpotFleet request bucket refill rate[0m                        |  [1m[34m5.0[0m   |
+|  [1m[34mDescribeSpotFleetRequestHistory request bucket refill rate[0m         |  [1m[34m5.0[0m   |
+|  [1m[34mCancelCapacityReservationFleets request bucket maximum capacity[0m    |  [1m[34m50.0[0m  |
+|  [1m[34mDescribeCapacityReservationFleets request bucket maximum capacity[0m  |  [1m[34m100.0[0m |
+|  [1m[34mDescribeFleets request bucket refill rate[0m                          |  [1m[34m20.0[0m  |
++---------------------------------------------------------------------+--------+

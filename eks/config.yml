@@ -1,0 +1,40 @@
+# cluster.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: rmc-cluster
+  region: ap-southeast-2
+  tags:
+    env: dev
+    owner: rajendra
+
+iam:
+  withOIDC: true
+  # ARN of the Cluster IAM Role
+  # optional, eksctl creates a new role if not supplied
+  # suggested to use one Cluster IAM Role per account
+  serviceRoleARN: arn:aws:iam::569100044825:user/admin-user
+
+ 
+autoModeConfig:
+  # defaults to false
+  enabled: boolean 
+addons:
+  - name: vpc-cni 
+  - name: coredns 
+  - name: kube-proxy
+  - name: aws-ebs-csi-driver 
+    withAddonPolicies:
+      ebsCSIController: true
+
+managedNodeGroups:
+  - name: uptimelabs-worker
+    instanceType: t2.small
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    volumeSize: 20
+    ssh:
+      allow: true 
+      publicKeyName: rmc-key  
